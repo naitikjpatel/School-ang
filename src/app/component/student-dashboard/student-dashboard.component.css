@@ -1,0 +1,74 @@
+/* Reuse Theme Variables from :root in navbar.component.scss */
+
+/* Dashboard Container */
+.dashboard-container {
+  min-height: 100vh;
+  background: var(--primary-gradient); /* linear-gradient(135deg, #7ab0ee, #9013fe) */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient Overlay for Depth */
+.dashboard-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(122, 176, 238, 0.2), rgba(144, 19, 254, 0.2));
+  z-index: 0;
+}
+
+/* Main Content */
+.main-content {
+  margin-top: 64px; /* Below navbar (60px + 4px border) */
+  margin-left: 0;
+  padding: 1.5rem;
+  background: white; /* #f5f7fa */
+  border-radius: 12px;
+  flex-grow: 1;
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-neumorphic);
+  transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Shift Content When Sidebar Open */
+.content-shifted {
+  margin-left: 260px; /* Matches sidebar width */
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0 !important; /* No shift on mobile */
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .content-shifted {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    padding: 0.75rem;
+  }
+}

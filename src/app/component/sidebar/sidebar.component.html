@@ -1,0 +1,12 @@
+<aside class="sidebar" [ngClass]="{ 'sidebar-open': isOpen, 'sidebar-closed': !isOpen }">
+  <div class="sidebar-header">
+    <span class="material-icons">person</span>
+    <span class="user-name">John Doe</span>
+  </div>
+  <ul class="nav-list">
+    <li *ngFor="let item of navItems" class="nav-item" [routerLink]="item.route" routerLinkActive="active">
+      <span class="material-icons">{{ item.icon }}</span>
+      <span class="nav-text">{{ item.name }}</span>
+    </li>
+  </ul>
+</aside>

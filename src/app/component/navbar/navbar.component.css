@@ -1,0 +1,165 @@
+/* CSS Variables for Theming */
+:root {
+  --primary-gradient: linear-gradient(135deg, #7ab0ee, #9013fe);
+  --accent-color: #4a90e2;
+  --error-color: #e74c3c;
+  --card-bg: #ffffff;
+  --content-bg: #f5f7fa;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-blur: blur(10px);
+  --shadow-neumorphic: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Navbar Styles */
+.navbar {
+  background: linear-gradient(135deg, #7ab0ee, #b25efc);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur); /* Safari support */
+  box-shadow: var(--shadow-neumorphic);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+
+}
+
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.menu-toggle:hover {
+  background: rgba(74, 144, 226, 0.1); /* #4a90e2 at 10% opacity */
+  transform: scale(1.1);
+}
+
+.menu-toggle .material-icons {
+  font-size: 1.75rem;
+  color: var(--accent-color);
+  transition: color 0.3s ease;
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+  text-transform: 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.app-title .material-icons {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  animation: pulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(1.1);
+  }
+}
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.user-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff; /* White for contrast on glass */
+  text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.profile-icon {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-icon:hover {
+  transform: rotate(360deg);
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--error-color);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(231, 76, 60, 0.1); /* #e74c3c at 10% */
+  transform: translateY(-2px);
+}
+
+.logout-btn .material-icons {
+  font-size: 1.3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .app-title {
+    font-size: 1.1rem;
+  }
+
+  .user-name {
+    display: none; /* Hide user name on mobile */
+  }
+
+  .profile-icon {
+    font-size: 1.6rem;
+  }
+
+  .logout-btn {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar-left {
+    gap: 0.5rem;
+  }
+
+  .logout-btn {
+    span {
+      display: none; /* Hide "Logout" text, keep icon */
+    }
+  }
+}

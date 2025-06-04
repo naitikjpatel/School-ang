@@ -1,0 +1,129 @@
+/* Reuse Theme Variables */
+:root {
+  --primary-gradient: linear-gradient(135deg, #7ab0ee, #9013fe);
+  --accent-color: #4a90e2;
+  --text-primary: #ffffff; /* White for contrast on gradient */
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-blur: blur(10px);
+}
+
+/* Loader Container */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color:linear-gradient(135deg, #7ab0ee, #9013fe);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000; /* Above all content */
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Spinner */
+.spinner {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 4px solid transparent;
+  border-top-color: var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}
+
+.ring:nth-child(2) {
+  width: 70px;
+  height: 70px;
+  animation-delay: 0.2s;
+  border-top-color: rgba(74, 144, 226, 0.8);
+}
+
+.ring:nth-child(3) {
+  width: 80px;
+  height: 80px;
+  animation-delay: 0.4s;
+  border-top-color: rgba(74, 144, 226, 0.6);
+}
+
+/* Center Icon */
+.logo {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  animation: pulse 1s ease-in-out infinite alternate;
+}
+
+/* Loading Text */
+.loading-text {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-in 0.3s both;
+}
+
+/* Animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .spinner {
+    width: 60px;
+    height: 60px;
+  }
+
+  .ring {
+    width: 45px;
+    height: 45px;
+  }
+
+  .ring:nth-child(2) {
+    width: 52px;
+    height: 52px;
+  }
+
+  .ring:nth-child(3) {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+
+  .loading-text {
+    font-size: 1rem;
+  }
+}

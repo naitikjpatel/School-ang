@@ -1,0 +1,7 @@
+<div class="dashboard-container">
+  <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
+  <app-sidebar [isOpen]="isSidebarOpen"></app-sidebar>
+  <main class="main-content" [ngClass]="{ 'content-shifted': isSidebarOpen && !isMobile }">
+    <router-outlet></router-outlet>
+  </main>
+</div>
