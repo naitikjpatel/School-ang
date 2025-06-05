@@ -28,4 +28,6 @@ export class StudentDashboardComponent {
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
+
+  
 }

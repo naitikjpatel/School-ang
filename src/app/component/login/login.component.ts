@@ -35,7 +35,8 @@ export class LoginComponent {
         console.log('Login data:', this.loginForm.value);
         this.loading = false;
         // if the login credentials are valid, navigate to the student
-        this.router.navigate(['student-dashboard']);
+        // this.router.navigate(['student-dashboard']);
+        this.router.navigate(['/teacher-dashboard']);
       }, 1500);
     }
   }
@@ -44,7 +45,6 @@ export class LoginComponent {
     this.hidePassword = !this.hidePassword;
   }
 
-  // Getter for form controls to simplify template access
   get email() { return this.loginForm.get('email'); }
   get userId() { return this.loginForm.get('userId'); }
 }

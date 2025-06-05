@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';import { UserServiceService } from '../../service/user-service.service';
 
 @Component({
   selector: 'app-loader',
@@ -8,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class LoaderComponent {
 
+  // constructor(private userservice:UserServiceService){}
+ 
+  // ngOnInit() {
+  //   this.userservice.getAllUser().subscribe(data => {
+  //     console.log("Users:", data);
+  //   });
+// }
 }

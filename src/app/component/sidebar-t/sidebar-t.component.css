@@ -1,0 +1,29 @@
+.sidenav-container {
+  height: calc(100vh - 64px); /* Adjust for header height */
+}
+
+.sidenav {
+  width: 250px;
+  background: linear-gradient(180deg, #3f51b5, #7986cb);
+  color: white;
+  .sidenav-header {
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    h3 {
+      margin: 0;
+      color: white;
+    }
+  }
+  mat-nav-list {
+    a {
+      color: white;
+      &.active {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      mat-icon {
+        margin-right: 16px;
+      }
+    }
+  }
+}

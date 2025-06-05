@@ -1,0 +1,23 @@
+/* .header {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    mat-icon {
+      margin-right: 5px;
+    }
+  }
+  .menu-button {
+    margin-right: 16px;
+  }
+} */

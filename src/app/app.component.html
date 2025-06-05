@@ -1,5 +1,5 @@
 <main class="main">
-  <div *ngIf="showLoader">
+  <div *ngIf="showLoader" class="loader-container">
     <app-loader></app-loader>
   </div>
   <router-outlet *ngIf="!showLoader"></router-outlet>

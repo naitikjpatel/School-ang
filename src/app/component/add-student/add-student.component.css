@@ -1,0 +1,4 @@
+/* src/app/components/add-student/add-student.component.css */
+.form-input {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-500 text-gray-700;
+}

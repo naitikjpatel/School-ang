@@ -1,6 +1,3 @@
-/* Reuse Theme Variables from :root in navbar.component.scss */
-
-/* Dashboard Container */
 .dashboard-container {
   min-height: 100vh;
   background: var(--primary-gradient); /* linear-gradient(135deg, #7ab0ee, #9013fe) */
@@ -10,7 +7,6 @@
   overflow: hidden;
 }
 
-/* Gradient Overlay for Depth */
 .dashboard-container::before {
   content: '';
   position: absolute;
@@ -22,12 +18,11 @@
   z-index: 0;
 }
 
-/* Main Content */
 .main-content {
-  margin-top: 64px; /* Below navbar (60px + 4px border) */
+  margin-top: 56px; 
   margin-left: 0;
   padding: 1.5rem;
-  background: white; /* #f5f7fa */
+  background: white;
   border-radius: 12px;
   flex-grow: 1;
   position: relative;
@@ -37,12 +32,12 @@
   animation: fadeIn 0.5s ease-out;
 }
 
-/* Shift Content When Sidebar Open */
+
 .content-shifted {
-  margin-left: 260px; /* Matches sidebar width */
+  margin-left: 260px; 
 }
 
-/* Fade-In Animation */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -57,7 +52,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .main-content {
-    margin-left: 0 !important; /* No shift on mobile */
+    margin-left: 0 !important;
     padding: 1rem;
     border-radius: 8px;
   }

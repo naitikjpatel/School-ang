@@ -1,0 +1,150 @@
+<!-- Sidebar Component -->
+<div
+  class="bg-gray-900 text-white w-64 min-h-screen fixed top-0 left-0 z-40 transform transition-transform duration-300 shadow-lg md:relative"
+  [ngClass]="{
+    'translate-x-0': isSidebarOpen,
+    '-translate-x-full': !isSidebarOpen,
+    'md:translate-x-0': true
+  }"
+>
+  <!-- Header -->
+  <!-- <div class="flex items-center justify-center py-6 border-b border-gray-700"> -->
+  <!-- <h2 class="text-2xl font-bold tracking-wide">Dashboard</h2> -->
+  <!-- </div> -->
+
+  <!-- Mobile Close Button -->
+  <button
+    class="md:hidden absolute top-4 right-4 text-gray-400 hover:text-white transition"
+    (click)="toggleSidebar()"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"
+      />
+    </svg>
+  </button>
+
+  <!-- Navigation -->
+  <nav class="mt-0 px-4 flex-1 overflow-y-auto">
+    <ul class="space-y-3">
+      <li>
+        <a
+          routerLink="students"
+        
+          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-blue-400 transition font-medium hover:border border-white"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 12l2-2m0 0l7-7 7 7m-9 12V9m4 12v-6m4 6v-4"
+            />
+          </svg>
+          Dashboard
+        </a>
+      </li>
+
+      <li>
+        <a
+          routerLink="/teacher-dashboard/students"
+          routerLinkActive="bg-gray-800 text-blue-400"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-blue-400 transition font-medium hover:border border-white"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 12h14M12 5l7 7-7 7"
+            />
+          </svg>
+          Student List
+        </a>
+      </li>
+
+      <li>
+        <a
+          routerLink="/teacher-dashboard/courses"
+          routerLinkActive="bg-gray-800 text-blue-400"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-blue-400 transition font-medium hover:border border-white"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          Course List
+        </a>
+      </li>
+
+      <li>
+        <a
+          routerLink="/teacher-dashboard/subjects"
+          routerLinkActive="bg-gray-800 text-blue-400"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-blue-400 transition font-medium hover:border border-white"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"
+            />
+          </svg>
+          Subjects
+        </a>
+      </li>
+
+    <li>
+      <a
+        routerLink="/teacher-dashboard/add-student"
+        routerLinkActive="bg-gray-800 text-blue-400"
+        class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-blue-400 transition font-medium hover:border border-white"
+      >
+        <!-- User Plus Icon -->
+        <svg
+        class="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm8 8v-2m0 0h-2m2 0h2"
+        />
+        </svg>
+        Add Student
+      </a>
+    </li>
+    </ul>
+  </nav>
+</div>

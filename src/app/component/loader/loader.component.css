@@ -1,6 +1,6 @@
 /* Reuse Theme Variables */
 :root {
-  --primary-gradient: linear-gradient(135deg, #7ab0ee, #9013fe);
+  --primary-gradient: linear-gradient(135deg, #7ab0ee, #ac50fd);
   --accent-color: #4a90e2;
   --text-primary: #ffffff; /* White for contrast on gradient */
   --glass-bg: rgba(255, 255, 255, 0.15);
@@ -14,7 +14,9 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color:linear-gradient(135deg, #7ab0ee, #9013fe);
+  width: 100vw;
+  background-color: #8abaf1;
+  /* background-color:linear-gradient(135deg, #7ab0ee, #9013fe); */
   position: fixed;
   top: 0;
   left: 0;

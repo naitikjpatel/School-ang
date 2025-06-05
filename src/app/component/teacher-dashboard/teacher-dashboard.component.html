@@ -1,0 +1,7 @@
+<app-header-t (toggleSidebar)="isSidebarOpen = !isSidebarOpen"></app-header-t>
+<div class="flex">
+  <app-sidebar-t [isSidebarOpen]="isSidebarOpen"></app-sidebar-t>
+  <main class="flex-1">
+    <router-outlet></router-outlet>
+  </main>
+</div>
