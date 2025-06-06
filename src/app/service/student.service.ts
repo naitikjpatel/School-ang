@@ -68,4 +68,6 @@ export class StudentService {
   addStudent(student: any): Observable<void> {
     return this.http.post<void>(this.apiUrl, student);
   }
+
+  
 }

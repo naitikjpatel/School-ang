@@ -1,0 +1,37 @@
+<div class="fixed inset-0 bg-opacity-100 backdrop-blur-xs flex justify-center items-center z-50">
+  <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8 relative animate-fade-in border border-black">
+    <button (click)="close.emit()" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors text-2xl" aria-label="Close">
+      &times;
+    </button>
+    <div class="flex flex-col items-center mb-6">
+      <div class="bg-blue-100 rounded-full p-3 mb-2">
+        <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-gray-800 mb-1">Add New Subject</h2>
+      <p class="text-gray-500 text-sm">Fill in the details below to add a new subject.</p>
+    </div>
+    <form class="space-y-4" (ngSubmit)="addSubject()">
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="subjectName">Subject Name</label>
+        <input
+          id="subjectName"
+          type="text"
+          [(ngModel)]="subjectName"
+          name="subjectName"
+          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          placeholder="e.g. Mathematics"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        [disabled]="loading"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition-colors mt-2"
+      >
+        {{ loading ? 'Adding...' : 'Add Subject' }}
+      </button>
+    </form>
+  </div>
+</div>

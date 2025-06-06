@@ -10,13 +10,13 @@ import {
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-add-student',
+  selector: 'app-add-teacher',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './add-student.component.html',
+  templateUrl: './add-teacher.component.html',
 })
 export class AddStudentComponent implements OnInit {
-  studentForm!: FormGroup;
+  teacherForm!: FormGroup;
   courses: any[] = [];
   loading = false;
   error: string | null = null;
@@ -24,62 +24,51 @@ export class AddStudentComponent implements OnInit {
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit(): void {
-    console.log('Add Student Form is called.ngOnInit Method');
+    console.log('Add Teacher Form is called.ngOnInit Method');
 
-    this.studentForm = this.fb.group({
+    this.teacherForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       address: [''],
       phone: ['', Validators.required],
-      courseId: ['', Validators.required],
+      
     });
 
-    this.loadCourses();
+    
   }
 
-  loadCourses() {
-    this.http
-      .get<any[]>('http://localhost:9999/api/course/getAllCourse')
-      .subscribe({
-        next: (data) => (this.courses = data),
-        error: (err) => {
-          console.error('Error loading courses', err);
-        },
-      });
-  }
 
   onSubmit() {
-    if (this.studentForm.invalid) return;
+    if (this.teacherForm.invalid) return;
     this.loading = true;
     this.error = null;
 
     const payload = {
-      firstName:this.studentForm.value.firstName,
-      lastName:this.studentForm.value.lastName,
-      email:this.studentForm.value.email,
+      firstName:this.teacherForm.value.firstName,
+      lastName:this.teacherForm.value.lastName,
+      email:this.teacherForm.value.email,
       userDetails: {
-        address: this.studentForm.value.address,
-        phone: this.studentForm.value.phone,
+        address: this.teacherForm.value.address,
+        phone: this.teacherForm.value.phone,
         details: '-',
       },
       userType: {
-        userTypeId: 1,
-      },
-      courseId: this.studentForm.value.courseId,
+        userTypeId:2,
+      }
     };
 
-    console.log('Student Data ', payload);
+    console.log('Teacher Data ', payload);
 
     this.http
       .post(
-        `http://localhost:9999/api/users/addUser/${payload.courseId}`,
+        'http://localhost:9999/api/users/addUser',
         payload
       )
       .subscribe({
         next: (res) => {
-          console.log('Student Added', res);
-          this.studentForm.reset();
+          console.log('Teacher Added', res);
+          this.teacherForm.reset();
         },
         error: (err) => {
           this.error = 'An error occurred while submitting the form.';
@@ -92,6 +81,6 @@ export class AddStudentComponent implements OnInit {
   }
 
   onCancel() {
-    this.studentForm.reset();
+    this.teacherForm.reset();
   }
 }

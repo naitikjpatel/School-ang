@@ -6,11 +6,13 @@ import { TeacherDashboardComponent } from './component/teacher-dashboard/teacher
 import { StudentListTComponent } from './component/student-list-t/student-list-t.component';
 import { CourseListTComponent } from './component/course-list-t/course-list-t.component';
 import { AddStudentComponent } from './component/add-student/add-student.component';
+import { CourseListSubjectComponent } from './component/course-list-subject/course-list-subject.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
+    // component:TeacherDashboardComponent
   },
   {
     path: 'student-dashboard',
@@ -44,6 +46,10 @@ export const routes: Routes = [
       {
         path:'add-student',
         component:AddStudentComponent
+      },
+      {
+        path:'subjects',
+        component:CourseListSubjectComponent
       },
       {
         path: '',

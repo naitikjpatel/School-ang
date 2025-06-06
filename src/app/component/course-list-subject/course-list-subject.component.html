@@ -1,0 +1,12 @@
+<!-- <div class="p-6 space-y-6 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
+  <app-course-card-subject *ngFor="let course of courses" [course]="course"></app-course-card-subject>
+</div> -->
+    
+<div class="p-6 space-y-6 bg-gradient-to-br from-gray-100 via-gray-50 to-indigo-50">
+    <ng-container *ngIf="!loading">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <app-course-card-subject *ngFor="let course of courses" [course]="course"></app-course-card-subject>
+        </div>
+    </ng-container>
+    <div *ngIf="loading" class="text-center text-gray-500">Loading...</div>
+</div>

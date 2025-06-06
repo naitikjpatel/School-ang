@@ -1,0 +1,157 @@
+
+// ---------------- course-card.component.html ----------------
+<div class="border rounded-lg p-4 sm:p-6 shadow-sm bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 relative w-full max-w-4xl mx-auto">
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-4">
+    <h2 class="text-lg sm:text-xl md:text-2xl font-semibold text-indigo-800 break-words">
+      {{ course.courseName }}
+    </h2>
+    <button
+      (click)="showModal = true"
+      class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm sm:text-base w-full sm:w-auto">
+      + Add Subject
+    </button>
+  </div>
+
+  <p class="text-gray-600 mb-4 text-sm sm:text-base line-clamp-3">
+    {{ course.courseDescription }}
+  </p>
+
+  <ul class="list-disc ml-6 text-gray-700 text-sm sm:text-base">
+    <li *ngFor="let sub of course.subjects" class="justify-center py-1 gap-1 list-item">
+      <div class='flex justify-between w-[50%] max-md:w-full'>
+        <span class="w-fit">{{ sub.subjectName }}</span>
+        <button
+          (click)="handleDelete(sub.subjectId)"
+          class="text-red-600 hover:text-red-800 text-sm sm:text-base ml-2 w-fit sm:w-auto">
+          &#128465;
+        </button>
+      </div>
+    </li>
+    <li *ngIf="course.subjects.length === 0" class="italic text-gray-400 text-sm sm:text-base">
+      No subjects assigned yet.
+    </li>
+  </ul>
+
+  <app-subject-modal *ngIf="showModal" [courseId]="course.courseId" (close)="closeModal()"></app-subject-modal>
+</div>
+
+// ---------------- subject-modal.component.ts (Basic skeleton) ----------------
+<button
+  (click)="showModal = true"
+  class="bg-gradient-to-r from-indigo-600 to-purple-600 ...">
+  + Add Subject
+</button>
+
+
+
+
+
+=======
+<app-subject-modal
+  *ngIf="showModal"
+  [courseId]="course.courseId"
+  (close)="closeModal($event)"
+  (subjectAdded)="onSubjectAdded($event)">
+</app-subject-modal>
+==========
+export class CourseCardSubjectComponent {
+  @Input() course!: Course; // course contains courseId, courseName, subjects
+  showModal = false;
+
+  closeModal(success: boolean) {
+    this.showModal = false;
+
+    if (success) {
+      // Re-fetch or update the subject list as needed
+      // E.g., if you want to reload course data:
+      this.refreshCourseSubjects();
+    }
+  }
+
+  onSubjectAdded(newSubject: Subject) {
+    this.course.subjects.push(newSubject); // Optional: for live update
+  }
+
+  refreshCourseSubjects() {
+    // Ideally call a CourseService.getCourseById(course.courseId) here
+    // or emit to parent and let parent re-fetch
+  }
+
+  handleDelete(subjectId: number) {
+    // Use service to delete and remove from this.course.subjects
+  }
+}
+=====
+@Component({
+  selector: 'app-subject-modal',
+  templateUrl: './subject-modal.component.html'
+})
+export class SubjectModalComponent {
+  @Input() courseId!: number;
+  @Output() close = new EventEmitter<boolean>();
+  @Output() subjectAdded = new EventEmitter<Subject>();
+
+  subjectName = '';
+  loading = false;
+
+  constructor(private subjectService: SubjectService) {}
+
+  addSubject() {
+    if (!this.subjectName.trim()) return;
+
+    this.loading = true;
+    const newSubject = {
+      subjectName: this.subjectName,
+      courseId: this.courseId
+    };
+
+    this.subjectService.addSubject(newSubject).subscribe({
+      next: (createdSubject) => {
+        this.subjectAdded.emit(createdSubject);
+        this.close.emit(true);
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+        alert('Error adding subject');
+      }
+    });
+  }
+
+  cancel() {
+    this.close.emit(false);
+  }
+}
+============
+<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-xl p-6 shadow-lg w-[90%] max-w-md space-y-4">
+    <h2 class="text-xl font-bold text-indigo-700">Add Subject</h2>
+
+    <input
+      type="text"
+      [(ngModel)]="subjectName"
+      class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      placeholder="Subject Name"
+    />
+
+    <div class="flex justify-end space-x-2">
+      <button (click)="cancel()" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+        Cancel
+      </button>
+      <button
+        (click)="addSubject()"
+        [disabled]="loading"
+        class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50">
+        {{ loading ? 'Adding...' : 'Add' }}
+      </button>
+    </div>
+  </div>
+</div>
+=========@Injectable({ providedIn: 'root' })
+export class SubjectService {
+  constructor(private http: HttpClient) {}
+
+  addSubject(subject: { subjectName: string; courseId: number }) {
+    return this.http.post<Subject>('/api/subjects', subject);
+  }
+}

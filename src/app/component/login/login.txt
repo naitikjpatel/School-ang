@@ -1,0 +1,55 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Sign In</h2>
+    <p class="subtitle">Welcome back! Please enter your credentials.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email Field -->
+
+
+
+ <div class="form-group">
+        <label for="userId">UserId</label>
+        <input
+          type="number"
+          id="userId"
+          formControlName="userId"
+          placeholder="Enter your id"
+          [ngClass]="{'invalid': userId?.invalid && (userId?.dirty || userId?.touched)}"
+        />
+        <div class="error-message" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+          <span *ngIf="userId?.errors?.['required']">UserId is required</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Enter your Email Id"
+          [ngClass]="{'invalid': email?.invalid && (email?.dirty || email?.touched)}"
+        />
+        <div class="error-message" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+          <span *ngIf="email?.errors?.['required']">Email is required</span>
+          <span *ngIf="email?.errors?.['email']">Please enter a valid email</span>
+        </div>
+      </div>
+
+   
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="login-button"
+        [disabled]="loginForm.invalid || loading"
+      >
+        <span *ngIf="!loading">Sign In</span>
+        <span *ngIf="loading" class="loading-spinner"></span>
+      </button>
+    </form>
+
+   
+  </div>
+</div>

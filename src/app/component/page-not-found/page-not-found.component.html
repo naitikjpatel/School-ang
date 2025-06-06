@@ -1,8 +1,25 @@
-<div class="not-found-container">
+<!-- <div class="not-found-container">
   <div class="not-found-card">
     <h1>404</h1>
     <h2>Page Not Found</h2>
     <p class="message">Oops! The page you're looking for doesn't exist or has been moved.</p>
     <a routerLink="" class="home-button">Back to Login</a>
+  </div>
+</div> -->
+
+<!-- 404 Not Found Page with Tailwind CSS -->
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
+  <div class="bg-white shadow-xl rounded-2xl p-8 max-w-md w-full text-center">
+    <h1 class="text-6xl font-extrabold text-red-500 mb-2">404</h1>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Page Not Found</h2>
+    <p class="text-gray-600 mb-6 text-sm md:text-base">
+      Oops! The page you're looking for doesn't exist or has been moved.
+    </p>
+    <a
+      routerLink=""
+      class="inline-block px-6 py-3 bg-gradient-to-r from-indigo-300 to-purple-300 text-white font-medium rounded-lg hover:opacity-90 transition"
+    >
+      Back to Login
+    </a>
   </div>
 </div>

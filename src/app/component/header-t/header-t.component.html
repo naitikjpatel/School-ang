@@ -21,14 +21,14 @@
         />
       </svg>
     </button>
-    <h1 class="text-2xl font-semibold tracking-wide">Teacher Dashboard</h1>
+    <h1 class="text-2xl font-semibold tracking-wide font-serif">Teacher Dashboard</h1>
   </div>
 
   <!-- Profile and Logout -->
   <div class="flex items-center gap-4">
     <!-- User Profile -->
     <div class="flex items-center gap-2">
-      <ng-container *ngIf="userProfileImageUrl; else userIcon">
+      <!-- <ng-container *ngIf="userProfileImageUrl; else userIcon">
         <img
           [src]="userProfileImageUrl"
           alt="User Profile"
@@ -49,10 +49,8 @@
             />
           </svg>
         </span>
-      </ng-template>
-      <span class="hidden md:inline-block font-medium text-sm text-gray-200">{{
-        userName
-      }}</span>
+      </ng-template> -->
+      <span class="font-medium text-sm text-gray-200">{{userName}}</span>
     </div>
 
     <!-- Logout Button -->

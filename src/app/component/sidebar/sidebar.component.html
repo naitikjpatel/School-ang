@@ -1,4 +1,4 @@
-<aside class="sidebar" [ngClass]="{ 'sidebar-open': isOpen, 'sidebar-closed': !isOpen }">
+<!-- <aside class="sidebar" [ngClass]="{ 'sidebar-open': isOpen, 'sidebar-closed': !isOpen }">
   <div class="sidebar-header">
     <span class="material-icons">person</span>
     <span class="user-name">John Doe</span>
@@ -7,6 +7,24 @@
     <li *ngFor="let item of navItems" class="nav-item" [routerLink]="item.route" routerLinkActive="active">
       <span class="material-icons">{{ item.icon }}</span>
       <span class="nav-text">{{ item.name }}</span>
+    </li>
+  </ul>
+</aside> -->
+
+
+<aside
+  class="fixed top-[64px] bottom-0 left-0 z-50 w-[260px] transition-transform duration-300 ease-in-out bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg text-white overflow-y-auto"
+  [ngClass]="{ 'translate-x-0': isOpen, '-translate-x-full': !isOpen }">
+  <div class="flex items-center px-6 py-4 border-b border-white/20">
+    <span class="material-icons text-white text-3xl mr-3">person</span>
+    <span class="text-lg font-semibold">Teacher Name</span>
+  </div>
+  <ul class="py-4">
+    <li *ngFor="let item of navItems"
+        class="flex items-center gap-4 px-6 py-3 hover:bg-indigo-700 transition-colors cursor-pointer"
+        [routerLink]="item.route" routerLinkActive="bg-indigo-700 font-semibold">
+      <span class="material-icons">{{ item.icon }}</span>
+      <span>{{ item.name }}</span>
     </li>
   </ul>
 </aside>

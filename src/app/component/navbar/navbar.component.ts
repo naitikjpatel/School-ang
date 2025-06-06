@@ -12,6 +12,7 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 export class NavbarComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
 
+  userName:string|null=localStorage.getItem('firstName');
   constructor(private router: Router) {}
 
   onToggleSidebar() {
@@ -19,7 +20,8 @@ export class NavbarComponent {
   }
 
   logout() {
-    // Simulate logout (clear auth state if applicable)
+    // here we clean the localstorage
+    localStorage.clear();
     this.router.navigate(['']);
   }
 }

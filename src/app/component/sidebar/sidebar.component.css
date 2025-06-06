@@ -1,7 +1,7 @@
 /* Reuse Theme Variables from :root in navbar.component.scss */
 
 /* Sidebar Styles */
-.sidebar {
+/* .sidebar {
   background: linear-gradient(135deg, #7ab0ee, #9013fe);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -12,7 +12,7 @@
   left: 0;
   z-index: 999;
   box-shadow: 2px 0 0 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-y: auto;
   border-right: 1px solid rgba(255, 255, 0.2);
 }
@@ -30,7 +30,7 @@
   display: flex;
   align-items: center;
   padding: 1.5rem;
-  background: linear-gradient(135deg, rgba(74, 144, 226, 0.15), rgba(144, 19, 254, 0.15)); /* Subtle gradient */
+  background: linear-gradient(135deg, rgba(74, 144, 226, 0.15), rgba(144, 19, 254, 0.15));
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   position: sticky;
   top: 0;
@@ -51,14 +51,12 @@
   text-shadow: 0 1px rgba(0, 0, 0, 0.2);
 }
 
-/* Bounce Animation for Icon */
 @keyframes bounce {
   0% { transform: translateY(1); }
   50% { transform: translateY(-0.2); }
   100% { transform: translateY(1); }
 }
 
-/* Navigation List */
 .nav-list {
   list-style: none;
   padding: 0;
@@ -121,7 +119,6 @@
   color: #ffffff;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .sidebar {
     width: 220px;
@@ -146,4 +143,4 @@
   .nav-item .nav-text {
     font-size: 0.95rem;
   }
-}
+} */
