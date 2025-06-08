@@ -11,12 +11,34 @@ import { CourseListSubjectComponent } from './component/course-list-subject/cour
 export const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
+    component: StudentDashboardComponent,
+    children:[
+      {
+        path:'add-student',
+        component:AddStudentComponent
+      },
+      {
+        path: '',
+        redirectTo: 'add-student',
+        pathMatch: 'full',
+      },
+    ]
     // component:TeacherDashboardComponent
   },
   {
     path: 'student-dashboard',
     component: StudentDashboardComponent,
+    children:[
+      {
+        path:'add-student',
+        component:AddStudentComponent
+      },
+      {
+        path: '',
+        redirectTo: 'add-student',
+        pathMatch: 'full',
+      },
+    ]
     // children:[
     //     {
     //         path:'/courses'

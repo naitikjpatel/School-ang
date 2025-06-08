@@ -5,7 +5,7 @@
     <router-outlet></router-outlet>
   </main>
 </div> -->
-<div class="min-h-screen flex flex-col bg-gradient-to-br from-gray-100 via-gray-200 to-indigo-100 relative overflow-hidden">
+<!-- <div class="min-h-screen flex flex-col bg-gradient-to-br from-gray-100 via-gray-200 to-indigo-100 relative overflow-hidden">
   <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
   <app-sidebar [isOpen]="isSidebarOpen"></app-sidebar>
 
@@ -13,5 +13,18 @@
     class="relative z-10 transition-all duration-400 ease-in-out p-6 bg-white rounded-xl shadow-xl mt-[64px]"
     [ngClass]="{ 'ml-[260px]': isSidebarOpen && !isMobile, 'ml-0': !isSidebarOpen || isMobile }">
     <router-outlet></router-outlet>
+  </main>
+</div>
+ -->
+<div class="min-h-screen flex flex-col bg-gradient-to-br from-gray-100 via-gray-200 to-indigo-100 relative overflow-hidden">
+  <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
+  <app-sidebar [isSidebarOpen]="isSidebarOpen" (sidebarToggle)="toggleSidebar()"></app-sidebar>
+
+  <main
+    class="transition-all duration-300 ease-in-out p-6 mt-[64px]"
+    [ngClass]="{ 'ml-[260px]': isSidebarOpen && !isMobile, 'ml-0': !isSidebarOpen || isMobile }">
+    <div class="bg-white rounded-2xl shadow-xl p-6">
+      <router-outlet></router-outlet>
+    </div>
   </main>
 </div>
