@@ -16,15 +16,27 @@
   </main>
 </div>
  -->
-<div class="min-h-screen flex flex-col bg-gradient-to-br from-gray-100 via-gray-200 to-indigo-100 relative overflow-hidden">
-  <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
-  <app-sidebar [isSidebarOpen]="isSidebarOpen" (sidebarToggle)="toggleSidebar()"></app-sidebar>
+<div class="min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-indigo-100 relative overflow-hidden">
+  <!-- Navbar -->
+  <app-navbar (toggleSidebar)="isSidebarOpen = !isSidebarOpen"></app-navbar>
 
-  <main
-    class="transition-all duration-300 ease-in-out rounded-2xl p-2 mt-[64px]"
-    [ngClass]="{ 'ml-[260px]': isSidebarOpen && !isMobile, 'ml-0': !isSidebarOpen || isMobile }">
-    <div class="bg-white  shadow-xl  rounded-2xl ">
-      <router-outlet></router-outlet>
-    </div>
-  </main>
+  <!-- Sidebar + Main Content Container -->
+  <div class="flex">
+    <!-- Sidebar -->
+    <app-sidebar
+      [isSidebarOpen]="isSidebarOpen"
+      class="transition-transform duration-300 ease-in-out"
+      [ngClass]="{
+        'translate-x-0': isSidebarOpen || !isMobile,
+        '-translate-x-full': !isSidebarOpen && isMobile
+      }"
+    ></app-sidebar>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6  transition-all duration-300 ease-in-out">
+      <div class="bg-white rounded-2xl shadow-xl p-6">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
 </div>

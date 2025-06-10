@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -11,21 +11,25 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   templateUrl: './student-dashboard.component.html',
   styleUrls: ['./student-dashboard.component.css']
 })
-export class StudentDashboardComponent {
-  isSidebarOpen = true; // Sidebar open by default
-  isMobile = false; // Track mobile view
+export class StudentDashboardComponent implements OnInit {
+  isSidebarOpen = true;
+  isMobile = false;
 
-  constructor() {
+  ngOnInit(): void {
     this.checkScreenSize();
   }
 
   @HostListener('window:resize')
-  checkScreenSize() {
-    this.isMobile = window.innerWidth <= 768;
-    this.isSidebarOpen = !this.isMobile; // Collapse sidebar on mobile
+  onResize(): void {
+    this.checkScreenSize();
   }
 
-  toggleSidebar() {
+  private checkScreenSize(): void {
+    this.isMobile = window.innerWidth <= 768;
+    this.isSidebarOpen = !this.isMobile;
+  }
+
+  toggleSidebar(): void {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
 }

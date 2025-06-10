@@ -1,25 +1,85 @@
-
-<aside
-  class="fixed top-[1px] bottom-0 left-0 z-400 w-[260px] bg-gradient-to-br from-indigo-500 to-purple-600 shadow-xl text-white overflow-y-auto transform transition-transform duration-300 ease-in-out"
-  [ngClass]="{ 'translate-x-0': isSidebarOpen, '-translate-x-full': !isSidebarOpen, 'md:translate-x-0': true }">
+<div
+  class="bg-gray-900 text-white w-64 min-h-screen fixed top-0 left-0 z-40 transform transition-transform duration-300 shadow-lg md:relative"
+  [ngClass]="{
+    'translate-x-0': isSidebarOpen,
+    '-translate-x-full': !isSidebarOpen,
+    'md:translate-x-0': true
+  }"
+>
+  <!-- Close Button for Mobile -->
   <button
-    class="md:hidden absolute top-4 right-4 text-white hover:text-gray-300 transition"
-    (click)="sidebarToggle.emit()">
-    <span class="material-icons">close</span>
+    class="md:hidden absolute top-4 right-4 text-gray-400 hover:text-white transition"
+    (click)="sidebarToggle.emit()"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"
+      />
+    </svg>
   </button>
 
-  <div class="flex items-center px-6 py-4 border-b border-white/20">
-    <span class="material-icons text-white text-3xl mr-3 cursor-pointer" [routerLink]="navItems[2].route">person</span>
-    <span class="text-lg font-semibold">{{userName}}</span>
-  </div>
+  <!-- User Info
+  <div class="flex items-center gap-3 px-4 py-5 border-b border-white/20">
+    <div class="bg-white/10 p-3 rounded-full">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5.121 17.804A9 9 0 1117.804 5.121 9 9 0 015.121 17.804z"
+        />
+      </svg>
+    </div>
+    <div>
+      <p class="text-base font-semibold">{{ userName }}</p>
+      <p class="text-xs text-white/70">Student</p>
+    </div>
+  </div> -->
 
-  <ul class="py-4">
-    <li *ngFor="let item of navItems"
-        class="flex items-center gap-4 px-6 py-3 hover:bg-indigo-700 transition-colors cursor-pointer"
-        [routerLink]="item.route"
-        routerLinkActive="bg-indigo-700 font-semibold">
-      <span class="material-icons">{{ item.icon }}</span>
-      <span>{{ item.name }}</span>
-    </li>
-  </ul>
-</aside>
+  <!-- Navigation -->
+  <nav class="mt-0 px-4 flex-1 overflow-y-auto">
+    <ul class="space-y-4">
+ 
+      <li>
+        <a
+          routerLink="/student-dashboard/course-list"
+          routerLinkActive="bg-gray-800 text-blue-400"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-blue-400 transition font-medium hover:border border-white"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          My Courses
+        </a>
+      </li>
+
+      <li>
+        <a
+          routerLink="/student-dashboard/grades"
+          routerLinkActive="bg-gray-800 text-blue-400"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-blue-400 transition font-medium hover:border border-white"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m2 0a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v3a2 2 0 002 2h10z" />
+          </svg>
+          Result
+        </a>
+      </li>
+
+      <li>
+        <a
+          routerLink="/student-dashboard/edit-user"
+          routerLinkActive="bg-gray-800 text-blue-400"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 hover:text-blue-400 transition font-medium hover:border border-white"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A9 9 0 1117.804 5.121 9 9 0 015.121 17.804z" />
+          </svg>
+        Profile
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
