@@ -1,7 +1,6 @@
 <div
   class="bg-white border border-indigo-200 min-h-fit shadow-md hover:shadow-lg rounded-2xl p-6 max-w-5xl mx-auto transition duration-300 ease-in-out"
 >
-  <!-- Course Title -->
   <div
     class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4"
   >
@@ -25,7 +24,7 @@
   <!-- Divider -->
   <hr class="border-indigo-200 my-4" />
 
-  <!-- All subject list in particular course.-->
+  
   <div>
     <h3 class="text-lg font-semibold text-indigo-700 mb-3">Subjects</h3>
 
@@ -33,11 +32,13 @@
       *ngIf="course.subjects.length > 0; else noSubjects"
       class="grid gap-3 sm:grid-cols-2"
     >
+    
+    <!-- 766 to 1235 -->
       <div
         *ngFor="let sub of course.subjects"
-        class="flex items-center justify-between bg-indigo-50 hover:bg-indigo-100 rounded-xl px-4 py-2 transition shadow-sm"
+        class="flex items-center justify-between bg-indigo-50 hover:bg-indigo-100 rounded-xl px-4 py-2 transition w-full shadow-sm md:flex md:flex-col lg:flex-row lg:flex-none"
       >
-        <span class="text-indigo-900 font-medium text-sm sm:text-base">{{
+        <span class="text-indigo-900 font-medium text-sm sm:text-base ">{{
           sub.subjectName
         }}</span>
         <button
@@ -76,6 +77,4 @@
     (subjectAdded)="onSubjectAdded($event)"
   >
   </app-add-subject-modal>
-  <!-- To add a subject into course -->
-  <!-- <app-add-subject-modal *ngIf="showModal"  [courseId]="course.courseId" (close)="closeModal()"></app-add-subject-modal> -->
 </div>

@@ -66,6 +66,8 @@ export class StudentEditComponent implements OnInit {
 
   onCancel() {
     // implement your cancel navigation logic here
+    console.log("Cancle Clicked..");
+    
     history.back();
   }
 }

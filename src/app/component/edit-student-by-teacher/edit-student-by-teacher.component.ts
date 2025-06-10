@@ -234,8 +234,10 @@ export class EditStudentByTeacherComponent {
       address: this.teacherData.userDetails?.address,
       details: this.teacherData.userDetails?.details,
     });
+    history.back();
   }
 
+  
   alertMsg() {
     alert('Student Result Added Successfully..');
   }

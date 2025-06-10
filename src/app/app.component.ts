@@ -18,13 +18,8 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    // This method runs after the component's view has been fully initialized.
-    // It shows a loader for 2.5 seconds, then hides it and navigates to the root route.
     setTimeout(() => {
       this.showLoader = false;
-      // this.cdr.detectChanges();
-
-      // This is new added
       const userId = localStorage.getItem('userId');
       const role = localStorage.getItem('role');
       if (userId && role === 'Student') {
@@ -38,16 +33,4 @@ export class AppComponent implements OnInit {
       this.router.navigate(['']);
     }, 2500);
   }
-
-  // ngOnInit(): void {
-  //   const userId = localStorage.getItem('userId');
-  // const role = localStorage.getItem('role');
-  // if (userId && role === 'Student') {
-  //   this.router.navigate(['/student-dashboard']);
-  //   return;
-  // } else if (userId && role === 'Teacher') {
-  //   this.router.navigate(['/teacher-dashboard']);
-  //   return;
-  // }
-  // }
 }

@@ -85,5 +85,6 @@ export class AddTeacherComponent implements OnInit {
 
   onCancel() {
     this.teacherForm.reset();
+    history.back();
   }
 }

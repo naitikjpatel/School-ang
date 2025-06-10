@@ -3,9 +3,6 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AddSubjectModalComponent } from "../add-subject-modal/add-subject-modal.component";
-
-// import { SubjectModalComponent } from '../subject-modal/subject-modal.component';
-
 interface Subject {
   subjectId: number;
   subjectName: string;
@@ -46,6 +43,8 @@ export class CourseCardSubjectComponent {
     
   }
    onSubjectAdded(newSubject: any) {
+    //taking this oject from the child component thought emit
+    //and adding into course.subject array to reflect the ui as well
     this.course.subjects.push(newSubject);
     this.showModal = false; 
   }

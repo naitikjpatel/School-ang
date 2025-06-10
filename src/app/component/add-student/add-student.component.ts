@@ -95,5 +95,6 @@ export class AddStudentComponent implements OnInit {
 
   onCancel() {
     this.studentForm.reset();
+    history.back();
   }
 }

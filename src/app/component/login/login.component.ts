@@ -23,23 +23,6 @@ export class LoginComponent {
       userId: ['', [Validators.required]],
     });
   }
-  // ngOnInit(): void {
-  //   //if data is already present in login then it's need to redirect on the dashboard
-  //  const userId = localStorage.getItem('userId');
-  // const role = localStorage.getItem('role');
-  // if (userId && role === 'Student') {
-  //   this.router.navigate(['/student-dashboard']);
-  //   return;
-  // } else if (userId && role === 'Teacher') {
-  //   this.router.navigate(['/teacher-dashboard']);
-  //   return;
-  // }
-
-  //   this.loginForm.reset();
-  //   this.showSuccessToast = false;
-  //   this.loading = false;
-  //   this.hidePassword = true;
-  // }
 
   onSubmit() {
     if (this.loginForm.valid) {
@@ -58,9 +41,7 @@ export class LoginComponent {
 
           const user = await response.json();
           console.log('Logged In User ', user);
-          //now firstly we store the userid,name and role in localstorage
           localStorage.setItem('userId', user.userId);
-          //set the role
           localStorage.setItem('role', user.userType.userTypes);
           localStorage.setItem('userName', user.firstName);
           this.showSuccessToast = true;
@@ -74,7 +55,6 @@ export class LoginComponent {
         .catch((error) => {
           this.loading = false;
           console.error('Login error:', error);
-          // Optionally show error to user
         });
     }
   }
