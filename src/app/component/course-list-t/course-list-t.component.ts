@@ -1,5 +1,4 @@
-// src/app/components/course-list/course-list.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Signal } from '@angular/core';
 import { CourseService } from '../../service/course.service';
 import { Course } from '../../service/student.service';
 import { NgFor, NgIf } from '@angular/common';
@@ -24,8 +23,7 @@ export class CourseListTComponent implements OnInit {
 
   pageSize: number = 5;
 
-  pagedCourses: Course[] = []; // Courses for current page
-
+  pagedCourses: Course[] = []; 
   get start() {
     return (this.currentPage - 1) * this.pageSize;
   }
@@ -35,6 +33,7 @@ export class CourseListTComponent implements OnInit {
   }
 
   updatePagedCourses() {
+    
     console.log('Update Paged Course : ', this.start, ' and ', this.end);
 
     this.pagedCourses = this.courses.slice(this.start, this.end);
@@ -46,6 +45,8 @@ export class CourseListTComponent implements OnInit {
 
   deleteCourse(courseId: number): void {
     if (confirm('Are you sure you want to delete this course?')) {
+      //this code to delete the course from the courseList
+      this.courses=this.courses.filter((course) => course.courseId != courseId);
       this.courseService.deleteCourse(courseId).subscribe({
         next: () => {
           this.courses = this.courses.filter((c) => c.courseId !== courseId);
@@ -116,7 +117,7 @@ export class CourseListTComponent implements OnInit {
       next: (data) => {
         this.courses = data;
         this.loading = false;
-        this.updatePagedCourses(); // <-- Call this after fetching
+        this.updatePagedCourses();
       },
       error: (err) => {
         console.error('Error fetching courses:', err);
@@ -128,7 +129,7 @@ export class CourseListTComponent implements OnInit {
   goToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages()) {
       this.currentPage = page;
-      this.updatePagedCourses(); // <-- Update courses for the new page
+      this.updatePagedCourses();
     }
   }
 }

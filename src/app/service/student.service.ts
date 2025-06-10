@@ -4,19 +4,19 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
-  interface UserType {
+ export interface UserType {
   userTypeId: number;
   userTypes: string;
 }
 
-interface UserDetails {
+export interface UserDetails {
   userDetailId: number;
   details: string;
   address: string;
   phone: string;
 }
 
-interface Subject {
+export interface Subject {
   subjectId: number;
   subjectName: string;
 }
@@ -28,13 +28,13 @@ export interface Course {
   subjects: Subject[];
 }
 
-interface Result {
+export interface Result {
   resultId: number;
   status: string;
   resultDate: string;
 }
 
-interface Student {
+export interface Student {
   userId: number;
   firstName: string;
   lastName: string;
@@ -43,6 +43,19 @@ interface Student {
   userDetails: UserDetails;
   results: Result[];
   courses: Course[];
+}
+
+
+export interface studentResult {
+    resultId:number;
+    status:string | null;
+    resultDate:string;
+    userId:number;
+    userName:string;
+    examId:number;
+    examName:string;
+    subjectId:number;
+    subjectName:string;
 }
 @Injectable({
   providedIn: 'root',

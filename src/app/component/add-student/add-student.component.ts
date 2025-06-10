@@ -55,9 +55,9 @@ export class AddStudentComponent implements OnInit {
     this.error = null;
 
     const payload = {
-      firstName:this.studentForm.value.firstName,
-      lastName:this.studentForm.value.lastName,
-      email:this.studentForm.value.email,
+      firstName: this.studentForm.value.firstName,
+      lastName: this.studentForm.value.lastName,
+      email: this.studentForm.value.email,
       userDetails: {
         address: this.studentForm.value.address,
         phone: this.studentForm.value.phone,
@@ -79,7 +79,9 @@ export class AddStudentComponent implements OnInit {
       .subscribe({
         next: (res) => {
           console.log('Student Added', res);
+
           this.studentForm.reset();
+          alert('Student Added Successfully..');
         },
         error: (err) => {
           this.error = 'An error occurred while submitting the form.';

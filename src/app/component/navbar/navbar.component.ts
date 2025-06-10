@@ -12,7 +12,7 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 export class NavbarComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
 
-  userName:string|null=localStorage.getItem('firstName');
+  userName:string|null=localStorage.getItem('userName') || 'naitik';
   constructor(private router: Router) {}
 
   onToggleSidebar() {

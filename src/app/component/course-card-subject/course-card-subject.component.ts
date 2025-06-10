@@ -45,4 +45,8 @@ export class CourseCardSubjectComponent {
     this.showModal = false;
     
   }
+   onSubjectAdded(newSubject: any) {
+    this.course.subjects.push(newSubject);
+    this.showModal = false; 
+  }
 }

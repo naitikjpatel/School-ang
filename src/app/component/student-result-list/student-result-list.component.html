@@ -1,0 +1,55 @@
+<div class="px-4 py-12 rounded-2xl min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
+  <div class="w-100% max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
+    
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
+      <h2 class="text-3xl font-semibold text-white tracking-wide font-serif">📊 Your Exam Results</h2>
+    </div>
+
+    <div *ngIf="loading" class="text-center py-12 text-indigo-600 text-xl font-medium animate-pulse">
+      Loading your results...
+    </div>
+
+    <div *ngIf="error" class="text-center py-12 text-red-600 text-lg font-semibold">
+      {{ error }}
+    </div>
+
+    <div *ngIf="!loading && !error" class="overflow-x-auto">
+      <table class="w-full text-left border-separate border-spacing-y-2 p-4">
+        <thead class="text-indigo-800 bg-indigo-100">
+          <tr>
+            <th class="px-6 py-3 rounded-l-lg">#</th>
+            <th class="px-6 py-3">Subject</th>
+            <th class="px-6 py-3">Exam</th>
+            <th class="px-6 py-3 rounded-r-lg">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let result of results; let i = index"
+            class="bg-white shadow rounded-lg transition duration-200 hover:shadow-md"
+          >
+            <td class="px-6 py-4 font-medium text-gray-700">{{ i + 1 }}</td>
+            <td class="px-6 py-4 font-semibold text-gray-900">{{ result.subjectName }}</td>
+            <td class="px-6 py-4 text-gray-800">{{ result.examName }}</td>
+            <td class="px-6 py-4">
+              <span
+                class="inline-block px-3 py-1 text-sm font-semibold rounded-full"
+                [ngClass]="{
+                  'bg-green-100 text-green-700': result.status?.toLowerCase() === 'pass',
+                  'bg-red-100 text-red-700': result.status?.toLowerCase() === 'fail',
+                  'bg-gray-100 text-gray-600': !result.status
+                }"
+              >
+                {{ result.status || 'Pending' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="results.length === 0" class="text-center text-gray-600 py-8 text-lg">
+        No results available at this time.
+      </div>
+    </div>
+  </div>
+</div>

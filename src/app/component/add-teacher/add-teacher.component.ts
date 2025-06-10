@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-teacher.component.html',
 })
-export class AddStudentComponent implements OnInit {
+export class AddTeacherComponent implements OnInit {
   teacherForm!: FormGroup;
   courses: any[] = [];
   loading = false;
@@ -67,8 +67,11 @@ export class AddStudentComponent implements OnInit {
       )
       .subscribe({
         next: (res) => {
-          console.log('Teacher Added', res);
+          
           this.teacherForm.reset();
+          console.log('Teacher Added', res);
+          console.log('Teacher Added Successfully..');
+          
         },
         error: (err) => {
           this.error = 'An error occurred while submitting the form.';

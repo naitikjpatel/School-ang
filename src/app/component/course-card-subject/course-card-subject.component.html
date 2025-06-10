@@ -1,16 +1,23 @@
-<div class="bg-white border border-indigo-200 min-h-fit  shadow-md hover:shadow-lg rounded-2xl p-6 max-w-5xl mx-auto transition duration-300 ease-in-out">
-  <!-- Header: Course Title & Action Button -->
-  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
+<div
+  class="bg-white border border-indigo-200 min-h-fit shadow-md hover:shadow-lg rounded-2xl p-6 max-w-5xl mx-auto transition duration-300 ease-in-out"
+>
+  <!-- Course Title -->
+  <div
+    class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4"
+  >
     <div>
-      <h2 class="text-2xl font-bold text-indigo-800 font-serif">{{ course.courseName }}</h2>
+      <h2 class="text-2xl font-bold text-indigo-800 font-serif">
+        {{ course.courseName }}
+      </h2>
       <p class="text-gray-600 text-sm sm:text-base mt-1">
-        {{ course.courseDescription || 'No description available.' }}
+        {{ course.courseDescription || "No description available." }}
       </p>
     </div>
 
     <button
       (click)="showModal = true"
-      class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium px-5 py-2 rounded-lg text-sm sm:text-base transition">
+      class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium px-5 py-2 rounded-lg text-sm sm:text-base transition"
+    >
       + Add Subject
     </button>
   </div>
@@ -18,35 +25,57 @@
   <!-- Divider -->
   <hr class="border-indigo-200 my-4" />
 
-  <!-- Subjects Section -->
+  <!-- All subject list in particular course.-->
   <div>
     <h3 class="text-lg font-semibold text-indigo-700 mb-3">Subjects</h3>
 
-    <div *ngIf="course.subjects.length > 0; else noSubjects" class="grid gap-3 sm:grid-cols-2">
+    <div
+      *ngIf="course.subjects.length > 0; else noSubjects"
+      class="grid gap-3 sm:grid-cols-2"
+    >
       <div
         *ngFor="let sub of course.subjects"
-        class="flex items-center justify-between bg-indigo-50 hover:bg-indigo-100 rounded-xl px-4 py-2 transition shadow-sm">
-        <span class="text-indigo-900 font-medium text-sm sm:text-base">{{ sub.subjectName }}</span>
+        class="flex items-center justify-between bg-indigo-50 hover:bg-indigo-100 rounded-xl px-4 py-2 transition shadow-sm"
+      >
+        <span class="text-indigo-900 font-medium text-sm sm:text-base">{{
+          sub.subjectName
+        }}</span>
         <button
           (click)="handleDelete(sub.subjectId)"
           class="text-red-500 hover:text-red-700 text-xs sm:text-sm font-semibold flex items-center gap-1 transition"
-          title="Delete subject">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12" />
+          title="Delete subject"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
           Delete
         </button>
       </div>
     </div>
 
-    <!-- Fallback if no subjects -->
+    <!-- if the subject is not assigned -->
     <ng-template #noSubjects>
       <p class="text-gray-400 italic text-sm">No subjects assigned yet.</p>
     </ng-template>
   </div>
-
-  <!-- Optional Modal Placeholder -->
-  <app-add-subject-modal *ngIf="showModal" [courseId]="course.courseId" (close)="closeModal()"></app-add-subject-modal>
+  <app-add-subject-modal
+    *ngIf="showModal"
+    [courseId]="course.courseId"
+    (close)="closeModal()"
+    (subjectAdded)="onSubjectAdded($event)"
+  >
+  </app-add-subject-modal>
+  <!-- To add a subject into course -->
+  <!-- <app-add-subject-modal *ngIf="showModal"  [courseId]="course.courseId" (close)="closeModal()"></app-add-subject-modal> -->
 </div>

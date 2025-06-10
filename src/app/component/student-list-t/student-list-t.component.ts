@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { StudentService } from '../../service/student.service';
-
-// import { ModalComponent } from '../modal/modal.component';
-// import { AddStudentFormModalComponent } from '../add-student-form-modal/add-student-form-modal.component';
-
+import { combineLatest } from 'rxjs';
 interface Student {
   userId: number;
   firstName: string;
@@ -17,7 +14,7 @@ interface Student {
 @Component({
   selector: 'app-student-list-t',
   standalone: true,
-  imports: [CommonModule ],
+  imports: [CommonModule],
   templateUrl: './student-list-t.component.html',
   styleUrls: ['./student-list-t.component.css'],
 })
@@ -29,91 +26,76 @@ export class StudentListTComponent implements OnInit {
   isModalOpen = false;
   selectedStudent: Student | null = null;
   isAddModalOpen = false;
-  math=Math;
+  math = Math;
 
   constructor(private studentService: StudentService, private router: Router) {
-    console.log("student list compoent constructor called");
-    
+    console.log('student list compoent constructor called');
   }
 
   ngOnInit() {
-    console.log("ngOnInti called");
-    
+    console.log('ngOnInti called');
+
     this.fetchStudents();
   }
 
   fetchStudents() {
-    console.log("fetch students called");
-    
+    console.log('fetch students called');
+
     this.loading = true;
     this.studentService.getStudents().subscribe({
       next: (students) => {
-        this.students = students;
+        this.students = [...students];
         this.loading = false;
         console.log(students);
-        
       },
       error: (error) => {
         console.error('Error fetching students:', error);
         this.loading = false;
       },
     });
-    console.log("data fetched");
-    
+    console.log('data fetched');
   }
 
-  // deleteStudent(studentId: number) {
-  //   if (confirm('Are you sure you want to delete this student?')) {
-  //     this.studentService.deleteStudent(studentId).subscribe({
-  //       next: () => {
-  //         // Refetch students from backend to ensure frontend is in sync
-  //         this.fetchStudents();
-  //         const totalPages = Math.ceil(this.students.length / this.studentsPerPage);
-  //         if (this.currentPage > totalPages && totalPages > 0) {
-  //           this.currentPage = totalPages;
-  //         } else if (totalPages === 0) {
-  //           this.currentPage = 1;
-  //         }
-  //       },
-  //       error: (error) => console.error('Error deleting student:', error),
-  //     });
-  //   }
-  // }
-deleteStudent(studentId: number) {
-  if (confirm('Are you sure you want to delete this student?')) {
-    this.studentService.deleteStudent(studentId).subscribe({
-      next: () => {
-        this.fetchStudentsAndUpdatePage();
+  deleteStudent(studentId: number) {
+    if (confirm('Are you sure you want to delete this student?')) {
+      this.students = this.students.filter(
+        (student) => student.userId != studentId
+      );
+      this.studentService.deleteStudent(studentId).subscribe({
+        next: () => {
+          this.fetchStudentsAndUpdatePage();
+        },
+        error: (error) => console.error('Error deleting student:', error),
+        complete: () => {
+          this.fetchStudentsAndUpdatePage();
+        },
+      });
+    }
+  }
+
+  fetchStudentsAndUpdatePage() {
+    this.studentService.getStudents().subscribe({
+      next: (students) => {
+        this.students = [...students];
+        this.loading = false;
+
+        const totalPages = Math.ceil(
+          this.students.length / this.studentsPerPage
+        );
+        if (this.currentPage > totalPages && totalPages > 0) {
+          this.currentPage = totalPages;
+        } else if (totalPages === 0) {
+          this.currentPage = 1;
+        }
+
+        this.currentPage = 1;
+       },
+      error: (error) => {
+        console.error('Error fetching students:', error);
+        this.loading = false;
       },
-      error: (error) => console.error('Error deleting student:', error),
     });
   }
-}
-
-fetchStudentsAndUpdatePage() {
-  this.studentService.getStudents().subscribe({
-    next: (students) => {
-      this.students = students;
-      this.loading = false;
-
-      const totalPages = Math.ceil(this.students.length / this.studentsPerPage);
-      if (this.currentPage > totalPages && totalPages > 0) {
-        this.currentPage = totalPages;
-      } else if (totalPages === 0) {
-        this.currentPage = 1;
-      }
-
-      // 🔁 Force re-evaluation of currentStudents getter
-      const tempPage = this.currentPage;
-      this.currentPage = 0;
-      setTimeout(() => this.currentPage = tempPage, 0);
-    },
-    error: (error) => {
-      console.error('Error fetching students:', error);
-      this.loading = false;
-    },
-  });
-}
 
   handleDelete(studentId: number) {
     this.deleteStudent(studentId);
@@ -160,6 +142,9 @@ fetchStudentsAndUpdatePage() {
   }
 
   navigateToEdit(studentId: number) {
-    this.router.navigate([`/editresult/${studentId}`]);
+    this.router.navigate([`/teacher-dashboard/edit-student/${studentId}`]);
+  }
+  navigateToAdd() {
+    this.router.navigate(['/teacher-dashboard/add-student']);
   }
 }

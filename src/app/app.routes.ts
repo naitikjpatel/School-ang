@@ -7,51 +7,40 @@ import { StudentListTComponent } from './component/student-list-t/student-list-t
 import { CourseListTComponent } from './component/course-list-t/course-list-t.component';
 import { AddStudentComponent } from './component/add-student/add-student.component';
 import { CourseListSubjectComponent } from './component/course-list-subject/course-list-subject.component';
+import { CourseListStudentComponent } from './component/course-list-student/course-list-student.component';
+import { StudentResultListComponent } from './component/student-result-list/student-result-list.component';
+import { StudentEditComponent } from './componet/student-edit/student-edit.component';
+import { EditStudentByTeacherComponent } from './component/edit-student-by-teacher/edit-student-by-teacher.component';
+import { AddTeacherComponent } from './component/add-teacher/add-teacher.component';
 
 export const routes: Routes = [
+  // implement the auth guard for restracting the all url except the login and page not found
   {
     path: '',
-    component: StudentDashboardComponent,
-    children:[
-      {
-        path:'add-student',
-        component:AddStudentComponent
-      },
-      {
-        path: '',
-        redirectTo: 'add-student',
-        pathMatch: 'full',
-      },
-    ]
-    // component:TeacherDashboardComponent
+   component:LoginComponent
   },
   {
     path: 'student-dashboard',
     component: StudentDashboardComponent,
     children:[
       {
-        path:'add-student',
-        component:AddStudentComponent
+        path:'course-list',
+        component:CourseListStudentComponent,
       },
       {
+        path:'grades',
+        component:StudentResultListComponent
+      },
+      {
+        path:'edit-user',
+        component:StudentEditComponent
+      },
+       {
         path: '',
-        redirectTo: 'add-student',
+        redirectTo: 'course-list',
         pathMatch: 'full',
       },
     ]
-    // children:[
-    //     {
-    //         path:'/courses'
-    //     },
-    //     {
-    //         path:'/subjects'
-    //     }
-    //     ,{
-    //         path:'/results'
-    //     },{
-    //         path:'/profile'
-    //     }
-    // ]
   },
   {
     path: 'teacher-dashboard',
@@ -70,8 +59,16 @@ export const routes: Routes = [
         component:AddStudentComponent
       },
       {
+        path:'edit-student/:id',
+        component:EditStudentByTeacherComponent
+      },
+      {
         path:'subjects',
         component:CourseListSubjectComponent
+      },
+      {
+        path:'add-teacher',
+        component:AddTeacherComponent
       },
       {
         path: '',
