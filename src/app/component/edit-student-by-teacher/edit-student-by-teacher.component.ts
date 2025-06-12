@@ -166,6 +166,8 @@ export class EditStudentByTeacherComponent {
         this.examLoading = false;
       });
   }
+
+
   handleExamResultChange(event: any, examIndex: number) {
     this.examResults[examIndex].examResult = event.target.value;
   }
@@ -179,8 +181,10 @@ export class EditStudentByTeacherComponent {
       exam: { examId: examResult.examId },
     }));
 
+    console.log("Result submit ",resultsToSubmit);
+    
     this.http
-      .post('http://localhost:z9999/api/result/addResult', resultsToSubmit)
+      .post('http://localhost:9999/api/result/addResult', resultsToSubmit)
       .subscribe({
         next: () => {
           alert('Results saved successfully!');

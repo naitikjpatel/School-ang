@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterLink],
+  imports: [CommonModule, RouterModule,TitleCasePipe],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -19,8 +19,11 @@ export class NavbarComponent {
     this.toggleSidebar.emit();
   }
 
-  logout() {
+
+  logout(){
+    //removing userId,role and userName from the localstorage 
     localStorage.clear();
+    // clicking on the logout button and we redirect to the login component
     this.router.navigate(['']);
   }
 }

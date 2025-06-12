@@ -1,4 +1,4 @@
-<div class="fixed inset-0 bg-opacity-100 backdrop-blur-xs flex justify-center items-center z-50">
+<div class="fixed inset-0 bg-opacity-100 backdrop-blur-[1.5px] flex justify-center items-center z-50">
   <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8 relative animate-fade-in border border-black">
     <button (click)="close.emit()" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors text-2xl" aria-label="Close">
       &times;
@@ -28,10 +28,12 @@
       <button
         type="submit"
         [disabled]="loading"
-        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition-colors mt-2"
+        class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-2 rounded-lg transition-colors mt-2"
       >
         {{ loading ? 'Adding...' : 'Add Subject' }}
       </button>
     </form>
   </div>
 </div>
+
+<!-- for model add prime ng -->

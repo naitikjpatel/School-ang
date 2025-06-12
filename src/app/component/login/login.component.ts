@@ -45,12 +45,15 @@ export class LoginComponent {
           localStorage.setItem('role', user.userType.userTypes);
           localStorage.setItem('userName', user.firstName);
           this.showSuccessToast = true;
-          setTimeout(() => (this.showSuccessToast = false), 2000);
-          if (user.userType.userTypes === 'Student') {
-            this.router.navigate(['/student-dashboard']);
-          } else if (user.userType.userTypes === 'Teacher') {
-            this.router.navigate(['/teacher-dashboard']);
-          }
+          setTimeout(() => {
+            this.showSuccessToast = false;
+              if(user.userType.userTypes==='Student'){
+                this.router.navigate(['/student-dashboard'])
+              }
+              else if (user.userType.userTypes){
+                this.router.navigate(['/teacher-dashboard'])
+              }
+          }, 1500);
         })
         .catch((error) => {
           this.loading = false;

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { StudentService } from '../../service/student.service';
-import { combineLatest } from 'rxjs';
+
 interface Student {
   userId: number;
   firstName: string;
@@ -14,7 +14,7 @@ interface Student {
 @Component({
   selector: 'app-student-list-t',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,TitleCasePipe],
   templateUrl: './student-list-t.component.html',
   styleUrls: ['./student-list-t.component.css'],
 })

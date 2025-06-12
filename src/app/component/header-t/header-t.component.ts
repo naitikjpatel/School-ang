@@ -1,19 +1,17 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-t',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,TitleCasePipe],
   templateUrl: './header-t.component.html',
   styleUrls: ['./header-t.component.css'],
 })
 export class HeaderTComponent implements OnInit {
   @Output() toggleSidebar = new EventEmitter<void>();
-  //Getting the userName from the localStorage
-  // userName:string|null = localStorage.getItem("userName");
   userName:string | null='';
   
   userProfileImageUrl=null;

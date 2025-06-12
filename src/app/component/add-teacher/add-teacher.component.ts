@@ -1,4 +1,3 @@
-// src/app/add-student/add-student.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {

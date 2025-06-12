@@ -13,7 +13,7 @@ export class StudentEditComponent implements OnInit {
   loading = true;
   error: string | null = null;
   userId: number = Number(localStorage.getItem('userId')) ||19;
-
+  userDetailsId:number =1;
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -34,6 +34,9 @@ export class StudentEditComponent implements OnInit {
           address: user.userDetails?.address || '',
           phone: user.userDetails?.phone || '',
         });
+        this.userDetailsId =user.userDetails?.userDetailId ||1;
+        console.log("user details id ",this.userDetailsId);
+        
         this.loading = false;
       },
       error: () => {
@@ -47,12 +50,14 @@ export class StudentEditComponent implements OnInit {
     if (this.userForm.invalid) return;
 
     this.loading = true;
+    //copying the data from the userForm
     const updatedUser = {
-      userId: this.userId,
-      userDetails: this.userForm.value,
+      
+      userDetailId:this.userDetailsId,
+      ...this.userForm.value,
     };
 
-    this.http.put(`http://localhost:9999/api/users/${this.userId}`, updatedUser).subscribe({
+    this.http.put('http://localhost:9999/api/usersDetails/updateUserDetails', updatedUser).subscribe({
       next: () => {
         this.loading = false;
         alert('UserDetails updated successfully!');
